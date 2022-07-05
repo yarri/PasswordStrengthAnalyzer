@@ -53,7 +53,7 @@ Each rule element corresponds to the following:
 		$prev_type =  null;
 
 		foreach($chars as $char){
-			$type = $this->_classifyChar($char);
+			$type = $this->_classifyCharType($char);
 			$unique_chars["$char"] = $char;
 			if(!isset($unique_chars_by_type[$type])){
 				$unique_chars_by_type[$type] = []; 
@@ -71,44 +71,19 @@ Each rule element corresponds to the following:
 
 		$coefficients = [];
 
-		// unique_chars
-		// 0..2: 0
-		// 3: 0.0184
-		// 6 ... 0.3957952
-		// 8 ... 0.57495424
-		// 10 ... 1.0479341056
-		// 12 ... 1.729025112064
-		
-		//																										x														base		multiplier	offset	max
-		$coefficients["unique_chars"] =				$this->_calcCoef(sizeof($unique_chars),			1.2,		0.3,				-0.3,		4);
-		$coefficients["password_length"] =		$this->_calcCoef(sizeof($chars),						1.18,		0.3,				-0.6,		8);
-		$coefficients["types_used"] =					$this->_calcCoef(sizeof($types_used),				1.5,		0.3,				0,			4);
-		$coefficients["type_transitions"] =		$this->_calcCoef(sizeof($type_transitions),	1.4,		0.3,				0,			4);
+		//																										 x															base		multiplier	offset	max
+		$coefficients["unique_chars"] =				$this->_calcCoef(sizeof($unique_chars),					1.2,		0.3,				-0.3,		4);
+		$coefficients["password_length"] =		$this->_calcCoef(sizeof($chars),								1.15,		0.3,				-0.6,		8);
+		$coefficients["types_used"] =					$this->_calcCoef(sizeof($types_used)-1,					1.5,		0.3,				0,			4);
+		$coefficients["type_transitions"] =		$this->_calcCoef(sizeof($type_transitions)-1,		1.3,		0.3,				0,			4);
 
 		$this->coefficients = $coefficients;
 
 		foreach($coefficients as $_type => $coefficient){
-			//echo "coefficient ($_type): $coefficient\n";
 			$score = $score * $coefficient;
 		}
 
-		/*
-		echo "unique_chars:\n";
-		echo join(",",$unique_chars),"\n\n";
-		echo "unique_chars_by_type:\n";
-		foreach($unique_chars_by_type as $_type => $_chars){
-			echo "$_type: ",join(",",$_chars),"\n";
-		}
-		echo "\n";
-		echo "types_used:\n";
-		echo join(",",$types_used),"\n\n";
-		echo "type_transitions:\n";
-		echo print_r($type_transitions),"\n";
-		*/
-
 		$score = min(100,round($score));
-
-		//echo "score: $score\n\n";
 
 		return $score;
 	}
@@ -121,10 +96,10 @@ Each rule element corresponds to the following:
 		$coefficient = (($multiplier * pow($base,$x)) + $offset);
 		$coefficient = max($coefficient, 0);
 		$coefficient = min($coefficient, $max);
-		return $coefficient;
+		return round($coefficient,4);
 	}
 
-	protected function _classifyChar($char){
+	protected function _classifyCharType($char){
 		foreach([
 			"[a-z]" => "lower_case",
 			"[A-Z]" => "upper_case",
@@ -138,7 +113,7 @@ Each rule element corresponds to the following:
 			return "symbol";
 		}
 		
-		$type_ascii = $this->_classifyChar($char->toAscii());
+		$type_ascii = $this->_classifyCharType($char->toAscii());
 		if($type_ascii==="lower_case"){
 			return "lower_case_diacritics";
 		}

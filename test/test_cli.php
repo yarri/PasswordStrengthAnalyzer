@@ -12,7 +12,7 @@ while (1) {
   $keypress = fgets($stdin);
   if (strlen($keypress)) {
 		if($keypress === "\177"){ // backspace
-			$password = substr($password,0,-1);
+			$password = String4::ToObject($password)->substr(0,-1)->toString();
 		}elseif($keypress === "\e"){ // escape
 			system("stty cbreak echo");
 			exit;
