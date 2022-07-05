@@ -19,6 +19,10 @@ PasswordStrengthAnalyzer will also rate letter-only passwords high if they are l
     echo $analyzer->analyze("someBOYSdontCRY"); // 61
     echo $analyzer->analyze("someBOYSdontCRYmuch"); // 100
 
+But not all long passwords are rated high.
+
+    echo $analyzer->analyze("somesomesomesomesomesome"); // 9
+
 License
 -------
 
