@@ -23,13 +23,13 @@ while (1) {
 		echo "\n";
 		echo "\n";
 
+		echo "coefficients:\n";
 		$detector = new Yarri\PasswordStrengthAnalyzer();
 		$score = $detector->analyze($password);
-		echo "score: $score%\n";
-		echo "coefficients:\n";
 		foreach($detector->getCoefficients() as $key => $coefficient){
-			echo "$key: $coefficient\n";
+			echo "* $key: $coefficient\n";
 		}
+		echo "SCORE: $score%\n";
 		echo "password: $password";
   }
 
