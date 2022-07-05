@@ -7,7 +7,17 @@ Usage
 -----
 
     $analyzer = new Yarri\PasswordStrengthAnalyzer();
-    $score = $analyzer->analyze("someFAIRpasswd");
+    $score = $analyzer->analyze("someFAIRpasswd"); // 32
+
+Usually, passwords with letters, numbers, symbols are considered as strong. It is also true for PasswordStrengthAnalyzer.
+
+    echo $analyzer->analyze("SomW23!3RE#"); // 91
+
+PasswordStrengthAnalyzer will also rate letter-only passwords high if they are long enough.
+
+    echo $analyze->analyze("someBOYS"); // 2
+    echo $analyzer->analyze("someBOYSdontCRY"); // 61
+    echo $analyzer->analyze("someBOYSdontCRYmuch"); // 100
 
 License
 -------
