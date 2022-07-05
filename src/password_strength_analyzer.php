@@ -6,45 +6,14 @@ class PasswordStrengthAnalyzer {
 	protected $coefficients = [];
 	
 	function analyze($password){
-		/*
-    case_diff
-    numbers
-    letters
-    symbols
-
-		lower_case
-		upper_case
-		diacritics
-
-{
-    midChar: 2,
-    consecAlphaUC: 2,
-    consecAlphaLC: 2,
-    consecNumber: 2,
-    seqAlpha: 3,
-    seqNumber: 3,
-    seqSymbol: 3,
-    length: 4,
-    number: 4,
-    symbol: 6
-}
-
-Each rule element corresponds to the following:
-
-    midChar: The multiplication factor (addition) for middle numbers or symbols.
-    consecAlphaUC: The multiplication factor (reduction) for consecutive upper case alphabets.
-    consecAlphaLC: The multiplication factor (reduction) for consecutive lower case alphabets.
-    consecNumber: The multiplication factor (reduction) for consecutive numbers.
-    seqAlpha: The multiplication factor (reduction) for sequential alphabets (3+).
-    seqNumber: The multiplication factor (reduction) for sequential numbers (3+).
-    seqSymbol: The multiplication factor (reduction) for sequential symbols (3+).
-    length: The multiplication factor (addition) for the count of characters.
-    number: The multiplication factor (addition) for count of numbers in the input.
-    symbol: The multiplication factor (addition) for count of symbols in the input.
-		*/
-
 		$password = new \String4($password);
-		$chars = $password->chars();
+		$chars = $password->chars(["stringify" => false]);
+
+		// Treatment for older versions of String4
+		foreach($chars as $k => $char){
+			if(is_object($char)){ break; } // \String4
+			$chars[$k] = new \String4($char);
+		}
 
 		$unique_chars = [];
 		$unique_chars_by_type = [];
