@@ -35,6 +35,29 @@ Groups of 3 or more consecutive characters have impact on the final score.
     echo $analyzer->analyze("OpenAFBGCED!"); // 41
     echo $analyzer->analyze("OpenABCDEFG!"); // 22
 
+Installation
+------------
+
+Just use the Composer:
+
+    composer require yarri/password-strength-analyzer
+
+Live testing
+------------
+
+In the package, there is a script runnable in shell which can be used for live testing.
+
+    $ php test/test_cli.php
+
+    coefficients:
+    * unique_chars: 1.2479
+    * password_length: 1.0051
+    * types_used: 0.675
+    * type_transitions: 1.1139
+    * simplicity_factor: 1
+    SCORE: 47%
+    password: THISisS3CR3T
+
 License
 -------
 
