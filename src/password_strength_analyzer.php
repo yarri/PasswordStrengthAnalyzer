@@ -120,6 +120,10 @@ class PasswordStrengthAnalyzer {
 
 		$score = min(100.0,$score);
 
+		if(strlen($password)>0){
+			$score = max(1.0,$score);
+		}
+
 		return $score;
 	}
 
