@@ -16,6 +16,13 @@ class TcPasswordStrengthAnalyzer extends TcBase {
 		$this->assertTrue($score3>$score2);
 	}
 
+	function test_minimum_strength(){
+		$analyzer = new Yarri\PasswordStrengthAnalyzer();
+
+		$this->assertEquals(0,$analyzer->analyze("")); // empty password has 0% strength
+		$this->assertEquals(1,$analyzer->analyze("a")); // non-empty password has minimum 1% strength
+	}
+
 	function test_simplicity_factor(){
 		$analyzer = new Yarri\PasswordStrengthAnalyzer();
 
