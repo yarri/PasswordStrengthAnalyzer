@@ -10,17 +10,17 @@ Usage
 -----
 
     $analyzer = new Yarri\PasswordStrengthAnalyzer();
-    $score = $analyzer->analyze("someFAIRpasswd"); // 29
+    $score = $analyzer->analyze("someFAIRpasswd"); // 26
 
 Usually, passwords with letters, numbers, symbols are considered as strong. It is also true for PasswordStrengthAnalyzer.
 
-    echo $analyzer->analyze("SomW23!3RE#"); // 91
+    echo $analyzer->analyze("SomW2!3RE#"); // 91
 
 PasswordStrengthAnalyzer will also rate letter-only passwords high if they are long enough.
 
-    echo $analyzer->analyze("someBOYS"); // 2
-    echo $analyzer->analyze("someBOYSdontCRY"); // 61
-    echo $analyzer->analyze("someBOYSdontCRYmuch"); // 100
+    echo $analyzer->analyze("someBOYS"); // 9
+    echo $analyzer->analyze("someBOYSdontCRY"); // 38
+    echo $analyzer->analyze("someBOYSdontCRYmuch"); // 71
 
 But not all long passwords are rated high.
 
@@ -28,12 +28,12 @@ But not all long passwords are rated high.
 
 Groups of 3 or more consecutive characters have impact on the final score.
 
-    echo $analyzer->analyze("Secret18239!"); // 50
-    echo $analyzer->analyze("Secret12345!"); // 31
-    echo $analyzer->analyze("Secret76543!"); // 31
+    echo $analyzer->analyze("Secret18239!"); // 58
+    echo $analyzer->analyze("Secret12345!"); // 45
+    echo $analyzer->analyze("Secret76543!"); // 45
 
-    echo $analyzer->analyze("OpenAFBGCED!"); // 41
-    echo $analyzer->analyze("OpenABCDEFG!"); // 22
+    echo $analyzer->analyze("OpenAFBGCED!"); // 42
+    echo $analyzer->analyze("OpenABCDEFG!"); // 28
 
 Installation
 ------------
@@ -49,13 +49,14 @@ In the package, there is a script runnable in shell which can be used for live t
 
     $ php test/test_cli.php
 
+    base score: 50%
     coefficients:
-    * unique_chars: 1.2479
-    * password_length: 1.0051
+    * unique_chars: 1.8
+    * password_length: 1.2
     * types_used: 0.675
-    * type_transitions: 1.1139
+    * type_transitions: 0.7465
     * simplicity_factor: 1
-    SCORE: 47%
+    SCORE: 54%
     password: THISisS3CR3T
 
 License
