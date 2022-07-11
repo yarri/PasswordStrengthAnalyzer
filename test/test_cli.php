@@ -23,6 +23,7 @@ while (1) {
 		echo "\n";
 		echo "\n";
 
+		echo "base score: 50%\n";
 		echo "coefficients:\n";
 		$detector = new Yarri\PasswordStrengthAnalyzer();
 		$score = $detector->analyze($password);
