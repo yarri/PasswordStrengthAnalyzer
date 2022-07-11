@@ -108,11 +108,12 @@ class PasswordStrengthAnalyzer {
 
 		$coefficients = [];
 
-		//																										 x															base		multiplier	offset	max
-		$coefficients["unique_chars"] =				$this->_calcCoef(sizeof($unique_chars),					1.2,		0.3,				-0.3,		4);
-		$coefficients["password_length"] =		$this->_calcCoef(sizeof($chars),								1.15,		0.3,				-0.6,		8);
-		$coefficients["types_used"] =					$this->_calcCoef(sizeof($types_used)-1,					1.5,		0.3,				0,			4);
-		$coefficients["type_transitions"] =		$this->_calcCoef(sizeof($type_transitions)-1,		1.3,		0.3,				0,			4);
+		//																																x																base		multiplier	offset	max
+		$coefficients["unique_chars"] =				$this->_calcCoefLinear(			sizeof($unique_chars),									0.2,				0,			4);
+		$coefficients["password_length"] =		$this->_calcCoefLinear(			sizeof($chars),													0.1,				0,			8);
+		$coefficients["types_used"] =					$this->_calcCoefExponential(sizeof($types_used)-1,					1.5,		0.3,				0,			4);
+		$coefficients["type_transitions"] =		$this->_calcCoefExponential(sizeof($type_transitions)-1,		1.2,		0.3,				0,			4);
+
 
 		foreach($coefficients as $_type => $coefficient){
 			$score = $score * $coefficient;
@@ -144,8 +145,15 @@ class PasswordStrengthAnalyzer {
 		return $chars;
 	}
 
-	protected function _calcCoef($x,$base,$multiplier,$offset = 0,$max = 2){
+	protected function _calcCoefExponential($x,$base,$multiplier,$offset = 0,$max = 2){
 		$coefficient = (($multiplier * pow($base,$x)) + $offset);
+		$coefficient = max($coefficient, 0);
+		$coefficient = min($coefficient, $max);
+		return round($coefficient,4);
+	}
+
+	protected function _calcCoefLinear($x,$multiplier,$offset = 0,$max = 2){
+		$coefficient = (($multiplier * $x) + $offset);
 		$coefficient = max($coefficient, 0);
 		$coefficient = min($coefficient, $max);
 		return round($coefficient,4);
