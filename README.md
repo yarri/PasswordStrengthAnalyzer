@@ -4,7 +4,7 @@ PasswordStrengthAnalyzer
 [![Build Status](https://app.travis-ci.com/yarri/PasswordStrengthAnalyzer.svg?branch=master)](https://app.travis-ci.com/yarri/PasswordStrengthAnalyzer)
 [![Downloads](https://img.shields.io/packagist/dt/yarri/password-strength-analyzer.svg)](https://packagist.org/packages/yarri/password-strength-analyzer)
 
-PasswordStrengthAnalyzer analyzes given password and scores its strength from 0 to 100%.
+PasswordStrengthAnalyzer analyzes given password and scores its strength from 0% to 100%.
 
 Usage
 -----

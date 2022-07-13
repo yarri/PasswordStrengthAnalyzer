@@ -1,7 +1,7 @@
 {
         "name": "yarri/password-strength-analyzer",
         "type": "library",
-        "description": "PasswordStrengthAnalyzer analyzes given password and scores its strength from 0 to 100%.",
+        "description": "PasswordStrengthAnalyzer analyzes given password and scores its strength from 0% to 100%.",
         "keywords": ["password", "strength", "analyze", "score"],
         "homepage": "https://github.com/yarri/PasswordStrengthAnalyzer",
         "license": ["MIT"],
