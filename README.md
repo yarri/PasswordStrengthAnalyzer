@@ -49,14 +49,14 @@ In the package, there is a script runnable in shell which can be used for live t
 
     $ php test/test_cli.php
 
-    base score: 50%
+    initial score: 50%
     coefficients:
     * unique_chars: 1.8
     * password_length: 1.2
     * types_used: 0.675
     * type_transitions: 0.7465
     * simplicity_factor: 1
-    SCORE: 54%
+    FINAL SCORE: 54%
     password: THISisS3CR3T
 
 License
