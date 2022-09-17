@@ -26,7 +26,7 @@ But not all long passwords are rated high.
 
     echo $analyzer->analyze("somesomesomesomesomesome"); // 4
 
-Groups of 3 or more consecutive characters have impact on the final score.
+Groups of 3 or more consecutive characters have a negative impact on the final score.
 
     echo $analyzer->analyze("Secret18239!"); // 58
     echo $analyzer->analyze("Secret12345!"); // 45
