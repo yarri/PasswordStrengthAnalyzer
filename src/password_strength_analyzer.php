@@ -37,9 +37,9 @@ class PasswordStrengthAnalyzer {
 	 */
 	function _simplifyPassword($password){
 		while(1){
-			$orig_password = $password;
+			$last_password = $password;
 			$password = preg_replace('/(.+)\1/','\1',$password);
-			if($orig_password === $password){
+			if($last_password === $password){
 				break;
 			}
 		}
@@ -67,6 +67,11 @@ class PasswordStrengthAnalyzer {
 				}
 				$skipped_chars[] = $char;
 				$prev_char = $char;
+
+				if(sizeof($skipped_chars)>=4){
+					$skipped_chars = [];
+				}
+
 				continue;
 			}
 
