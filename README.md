@@ -33,7 +33,7 @@ Groups of 3 or more consecutive characters have a negative impact on the final s
     echo $analyzer->analyze("Secret76543!"); // 45
 
     echo $analyzer->analyze("OpenAFBGCED!"); // 42
-    echo $analyzer->analyze("OpenABCDEFG!"); // 28
+    echo $analyzer->analyze("OpenABCDEFG!"); // 30
 
 Installation
 ------------
