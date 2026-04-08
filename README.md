@@ -4,7 +4,7 @@ PasswordStrengthAnalyzer
 [![Build Status](https://app.travis-ci.com/yarri/PasswordStrengthAnalyzer.svg?branch=master)](https://app.travis-ci.com/yarri/PasswordStrengthAnalyzer)
 [![Downloads](https://img.shields.io/packagist/dt/yarri/password-strength-analyzer.svg)](https://packagist.org/packages/yarri/password-strength-analyzer)
 
-PasswordStrengthAnalyzer analyzes given password and scores its strength from 0% to 100%.
+Scores password strength from 0% to 100%, penalizing repeated patterns and consecutive character sequences. Unicode and diacritics are supported.
 
 Usage
 -----
@@ -12,11 +12,11 @@ Usage
     $analyzer = new Yarri\PasswordStrengthAnalyzer();
     $score = $analyzer->analyze("someFAIRpasswd"); // 26
 
-Usually, passwords with letters, numbers, symbols are considered as strong. It is also true for PasswordStrengthAnalyzer.
+Passwords with letters, numbers, and symbols are rated high.
 
     echo $analyzer->analyze("SomW2!3RE#"); // 91
 
-PasswordStrengthAnalyzer will also rate letter-only passwords high if they are long enough.
+Letter-only passwords can also score high if they are long enough.
 
     echo $analyzer->analyze("someBOYS"); // 9
     echo $analyzer->analyze("someBOYSdontCRY"); // 38
@@ -35,10 +35,22 @@ Groups of 3 or more consecutive characters have a negative impact on the final s
     echo $analyzer->analyze("OpenAFBGCED!"); // 42
     echo $analyzer->analyze("OpenABCDEFG!"); // 30
 
+Use `getCoefficients()` to inspect the individual scoring factors after an analysis:
+
+    $analyzer->analyze("SomW2!3RE#"); // 91
+    print_r($analyzer->getCoefficients());
+    // [
+    //   'unique_chars'      => ...,
+    //   'password_length'   => ...,
+    //   'types_used'        => ...,
+    //   'type_transitions'  => ...,
+    //   'simplicity_factor' => ...,
+    // ]
+
 Installation
 ------------
 
-Just use the Composer:
+Use Composer:
 
     composer require yarri/password-strength-analyzer
 
