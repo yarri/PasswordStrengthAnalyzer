@@ -1,7 +1,7 @@
 PasswordStrengthAnalyzer
 ========================
 
-[![Build Status](https://app.travis-ci.com/yarri/PasswordStrengthAnalyzer.svg?branch=master)](https://app.travis-ci.com/yarri/PasswordStrengthAnalyzer)
+[![Tests](https://github.com/yarri/PasswordStrengthAnalyzer/actions/workflows/tests.yml/badge.svg)](https://github.com/yarri/PasswordStrengthAnalyzer/actions/workflows/tests.yml)
 [![Downloads](https://img.shields.io/packagist/dt/yarri/password-strength-analyzer.svg)](https://packagist.org/packages/yarri/password-strength-analyzer)
 
 Scores password strength from 0% to 100%, penalizing repeated patterns and consecutive character sequences. Unicode and diacritics are supported.
