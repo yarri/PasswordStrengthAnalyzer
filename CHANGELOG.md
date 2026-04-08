@@ -3,6 +3,10 @@ Change Log
 
 All notable changes to PasswordStrengthAnalyzer will be documented in this file.
 
+## [0.1.4] - 2026-04-08
+
+* A few code tweaks and improvements
+
 ## [0.1.3] - 2026-03-03
 
 * bb80d5 - `Yarri\PasswordStrengthAnalyzer::_simplifyPassword()` improved
