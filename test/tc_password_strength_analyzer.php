@@ -27,14 +27,14 @@ class TcPasswordStrengthAnalyzer extends TcBase {
 		$analyzer = new Yarri\PasswordStrengthAnalyzer();
 
 		$score1 = $analyzer->analyze('hiWORLDhiWORLD');
-		$coeficients1 = $analyzer->getCoefficients();
+		$coefficients1 = $analyzer->getCoefficients();
 
 		$score2 = $analyzer->analyze('hiWORLDhiWZRLD');
-		$coeficients2 = $analyzer->getCoefficients();
+		$coefficients2 = $analyzer->getCoefficients();
 
 		$this->assertTrue($score1 < $score2);
-		$this->assertTrue(1.0 > $coeficients1["simplicity_factor"]);
-		$this->assertEquals(1.0,$coeficients2["simplicity_factor"]);
+		$this->assertTrue(1.0 > $coefficients1["simplicity_factor"]);
+		$this->assertEquals(1.0,$coefficients2["simplicity_factor"]);
 	}
 
 	function test__simplifyPassword(){
