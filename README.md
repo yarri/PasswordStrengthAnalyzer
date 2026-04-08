@@ -40,11 +40,11 @@ Use `getCoefficients()` to inspect the individual scoring factors after an analy
     $analyzer->analyze("SomW2!3RE#"); // 91
     print_r($analyzer->getCoefficients());
     // [
-    //   'unique_chars'      => ...,
-    //   'password_length'   => ...,
-    //   'types_used'        => ...,
-    //   'type_transitions'  => ...,
-    //   'simplicity_factor' => ...,
+    //   'unique_chars'      => 2,
+    //   'password_length'   => 1,
+    //   'types_used'        => 1.0125,
+    //   'type_transitions'  => 0.8958,
+    //   'simplicity_factor' => 1,
     // ]
 
 Installation
