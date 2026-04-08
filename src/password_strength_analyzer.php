@@ -56,7 +56,7 @@ class PasswordStrengthAnalyzer {
 					(
 						($prev_char->match('/[a-z]/') && $char->match('/[a-z]/')) ||
 						($prev_char->match('/[A-Z]/') && $char->match('/[A-Z]/')) ||
-						($prev_char->match('/[1-9]/') && $char->match('/[1-9]/'))
+						($prev_char->match('/[0-9]/') && $char->match('/[0-9]/'))
 					) && (
 						(ord("$char") === ord("$prev_char") + 1) ||
 						(ord("$char") === ord("$prev_char") - 1)

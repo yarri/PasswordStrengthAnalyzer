@@ -59,5 +59,6 @@ class TcPasswordStrengthAnalyzer extends TcBase {
 		$this->assertEquals("Secret12",$analyzer->_simplifyPassword("Secret12"));
 		$this->assertEquals("Secret12",$analyzer->_simplifyPassword("Secret123"));
 		$this->assertEquals("Secret12",$analyzer->_simplifyPassword("Secret1234"));
+		$this->assertEquals("Secret01",$analyzer->_simplifyPassword("Secret01234"));
 	}
 }
