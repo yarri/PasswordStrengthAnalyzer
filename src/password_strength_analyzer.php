@@ -5,7 +5,7 @@ class PasswordStrengthAnalyzer {
 
 	protected $coefficients = [];
 
-	function analyze($password){
+	public function analyze($password){
 		$password = (string)$password;
 
 		$score = $this->_analyze($password,$coefficients);
@@ -27,7 +27,7 @@ class PasswordStrengthAnalyzer {
 		return round($score);
 	}
 
-	function getCoefficients(){
+	public function getCoefficients(){
 		return $this->coefficients;
 	}
 
